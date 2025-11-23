@@ -1,16 +1,16 @@
-import { createAgent, tool } from "langchain";
+import { createAgent, tool, createMiddleware, ToolMessage } from "langchain";
 import { ChatOpenAI } from "@langchain/openai";
 import * as z from "zod";
 import dotenv from "dotenv";
 
-dotenv.config();
+dotenv.config({ path:'../.env' });
 
 interface Config {
  // port: number
   nodeEnv: string;  
   openaiAPI: string;  
   //fourSquareAPI: string;
-}
+};
 /*env config*/
 const config: Config = {
   //port: Number(process.env.PORT),
@@ -24,7 +24,7 @@ const config: Config = {
   const RestaurantInfo = z.object({
     query: z.string(),
     address: z.string(),
-    taste: z.array(z.string),
+    taste: z.array(z.string()),
   });
 
   /*LLM*/
@@ -37,7 +37,7 @@ const config: Config = {
   });
 
   /*catch error*/
-  const handleToolErrors = createMiddleWare({
+  const handleToolErrors = createMiddleware({
     name: "HandleToolErrors",
     wrapToolCall: async (request, handler) => {
       try {
@@ -50,7 +50,7 @@ const config: Config = {
         });
       }
     },
-  });
+  }); 
   /* agent */
 
   const agent = createAgent({
