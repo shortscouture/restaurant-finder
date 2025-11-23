@@ -25,14 +25,16 @@ const RestaurantSchema = z.object({
     taste: z.array(z.string()),
   });
 
-const response = await client.responses.parse({
-    model: "gpt-3.5-turbo",
+
+export async function openaiResult () {
+    const response = await client.responses.parse({
+    model: "gpt-4o",
     input: [
     { role: "system", content: "Extract what the user asks of you when checking for restaurants." },
     {role: "user", content: "I want to eat in a sushi restaurant near Los Angeles.",
     },
   ],
   text: {
-    format: zodTextFormat(CalendarEvent, "event"),
+    format: zodTextFormat(RestaurantSchema, "event"),
   },
-});
+});}
