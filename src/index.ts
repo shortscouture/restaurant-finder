@@ -1,5 +1,5 @@
 //import dotenv from "dotenv";
-import { openaiResult } from './service/openai.service.ts'
+import { response } from './service/openai.service.ts'
 import express  from 'express'
 
 
@@ -21,12 +21,12 @@ const config: Config = {
 
 const app = express()
 
-app.get('/', async (req, res,next) => { // apparently need to be async to be able to invoke properly, langchain does not say this in the docs
+app.get('/', async (req, res,next) => { 
   try {  
-  const result = await openaiResult()
+  const result = response()
     res.json(result); } 
   catch (err) { 
-  console.error('error!', err); }
+  console.error('error!', err.message); }
   });
 
 

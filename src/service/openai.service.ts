@@ -26,15 +26,16 @@ const RestaurantSchema = z.object({
   });
 
 
-export async function openaiResult () {
-    const response = await client.responses.parse({
+
+    export const response = await client.responses.parse({
     model: "gpt-4o",
     input: [
-    { role: "system", content: "Extract what the user asks of you when checking for restaurants." },
+    { role: "system", content: "Extract what the user asks of you when checking for restaurants. only write a simple json sample. You are gonna do this by seperating the JSON file into query, " },
     {role: "user", content: "I want to eat in a sushi restaurant near Los Angeles.",
     },
   ],
   text: {
     format: zodTextFormat(RestaurantSchema, "event"),
-  },
-});}
+  },  
+});
+console.log(response.output_parsed);
