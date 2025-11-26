@@ -23,7 +23,6 @@ const RestaurantSchema = z.object({
     taste: z.array(z.string()),
 });
 
-
 export const response = await client.responses.parse({
     model: "gpt-4o",
     input: [

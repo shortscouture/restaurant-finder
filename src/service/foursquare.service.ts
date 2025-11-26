@@ -12,9 +12,9 @@ const config: Config = {
   fourSquareAPI: process.env.FOURSQUARE_API,
 }; 
 
-const options = {
+const options = { //options with parameters 
   method: 'GET',
-  url:'https://places-api.foursquare.com/places/search',
+  url:'https://places-api.foursquare.com/places/search', 
   params: {
     'code': 'pioneerdevai'
   },
