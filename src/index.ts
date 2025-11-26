@@ -6,22 +6,12 @@ const app = express()
 
 const restaurantResult = event;
 
-
-/*app.get('/', async (req, res,next) => { 
-  try {  
-  const result = await response()} 
-  catch (err) { 
-  console.error('error!', err.message); }
-  next();
-  });*/
-
-app.get('/', async (req, res,next) => { 
+app.get('/api', async (req, res,next) => { 
   try {  
   const result = await restaurantResult;
   const getRequest = await fetchData(); 
   console.log(JSON.stringify(getRequest.data.results[0],null,1));
-  res.json(getRequest.data.results[0]);
-  } //access first object only
+  res.json(getRequest.data.results[0]); } //access first object only
   catch (err) { 
   console.error('error!', err.message); }
   });
@@ -40,6 +30,6 @@ app.use((err, req, res, next) => {
 
 
 app.listen(3000, () => {
-  console.log(`app listening!`)
+  console.log(`app listening! /api/`)
 })
 

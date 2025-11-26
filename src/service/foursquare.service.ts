@@ -19,21 +19,11 @@ const options = { //options with parameters
   url:'https://places-api.foursquare.com/places/search',
  params: {
     query: llm.query,
-    //ll: llm.ll,
-    //ne: llm.ne,
-    //sw: llm.sw,
-    /*location: {
-      country:llm.country,
-      region:llm.region,
-      locality:llm.locality,
-      near: llm.near,
-    },*/
     relevance:llm.relevance,
     near:llm.near,
-    //'code':'pioneerdevai',
   },
   headers: {
-    'X-Access-Token': tokenKey,
+    'X-Access-Token': tokenKey, //validation input
     accept: 'application/json',
     'X-Places-Api-Version': '2025-06-17',
     Authorization: apiKey,
