@@ -1,34 +1,30 @@
-//import dotenv from "dotenv";
-import { response } from './service/openai.service.ts'
+import { response,event } from './service/openai.service.ts'
+import { fetchData } from './service/foursquare.service.ts'
 import express  from 'express'
-
-
-/*dotenv.config({ path:'/../.env' });
-
-interface Config {
- // port: number
-  nodeEnv: string;  
-  openaiAPI: string;  
-  //fourSquareAPI: string;
-};
-/*env config
-const config: Config = {
-  //port: Number(process.env.PORT),
-  nodeEnv: process.env.NODE_ENV,
-  openaiAPI: process.env.OPENAI_API_KEY,
-  //fourSquareAPI: process.env.FOURSQUARE_API,
-}; */
-
+//import { apiRequest } from './service/api.service.ts';
 const app = express()
+
+const restaurantResult = event;
+
+
+/*app.get('/', async (req, res,next) => { 
+  try {  
+  const result = await response()} 
+  catch (err) { 
+  console.error('error!', err.message); }
+  next();
+  });*/
 
 app.get('/', async (req, res,next) => { 
   try {  
-  const result = response()
-    res.json(result); } 
+  const result = await restaurantResult;
+  const getRequest = await fetchData(); 
+  console.log(JSON.stringify(getRequest.data.results[0],null,1));
+  res.json(getRequest.data.results[0]);
+  } //access first object only
   catch (err) { 
   console.error('error!', err.message); }
   });
-
 
 
 app.use((req,res,next) => {
@@ -36,11 +32,14 @@ app.use((req,res,next) => {
   next();
 });
 
+app.use('/static',express.static('index'))
+
 app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send({ error: err.message })
 });
 
 
 app.listen(3000, () => {
-  console.log(`Example app listening at http://localhost:3000`)
+  console.log(`app listening!`)
 })
+
