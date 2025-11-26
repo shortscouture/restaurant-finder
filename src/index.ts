@@ -28,5 +28,5 @@ app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send({ error: err.message })
 });
 
-export default app;
+export default app; // production only vercel does all the work
 
