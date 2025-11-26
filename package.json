@@ -15,7 +15,10 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node src/index.ts",
+    "dev": "ts-node src/index.ts"
   },
   "dependencies": {
     "@api/fsq-developers-places": "file:src/service/.api/apis/fsq-developers-places",

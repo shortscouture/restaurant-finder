@@ -1,10 +1,11 @@
-import { event } from './service/openai.service'
-import { fetchData } from './service/foursquare.service'
+import { event } from './services/openai.service.js'
+import { fetchData } from './services/foursquare.service.js'
 import express  from 'express'
 //import { apiRequest } from './service/api.service.ts';
 const app = express()
 
 const restaurantResult = event;
+app.get('/favicon.ico', (req, res) => res.status(204).end()); // i dont have favicon.ico
 
 app.get('/api', async (req, res,next) => { 
   try {  
