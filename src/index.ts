@@ -1,5 +1,5 @@
 import { response } from './service/openai.service.ts'
-import { fetchData } from ''./service/foursquare.service.ts'
+import { fetchData } from './service/foursquare.service.ts'
 import express  from 'express'
 const app = express()
 
