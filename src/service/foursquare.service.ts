@@ -1,8 +1,8 @@
 import dotenv from "dotenv";
-dotenv.config({ path:'/Users/shortscouture/Documents/js/restaurant-finder/.env' });
+dotenv.config({ path:'/Users/shortscouture/Documents/js/restaurant-finder/.env'});
 import axios from "axios";
 import {z} from "zod";
-import {event} from './openai.service.ts'
+import {event} from './openai.service'
 interface Config {
   nodeEnv: string;    
   fourSquareAPI: string; 
