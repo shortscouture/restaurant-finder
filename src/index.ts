@@ -15,11 +15,11 @@ const restaurantResult = event;
   next();
   });*/
 
-app.get('/', async (req, res,next) => { 
+app.get('/', async.notEmpty().escape(), (req, res,next) => { 
   try {  
   const result = await restaurantResult;
   const getRequest = await fetchData(); 
-  console.log(JSON.stringify(getRequest.data.results[0], null, 2));}
+  console.log(JSON.stringify(getRequest.data.results[0]));} //access the first object only! 
   catch (err) { 
   console.error('error!', err.message); }
   });
