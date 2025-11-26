@@ -2,17 +2,17 @@ import dotenv from "dotenv";
 dotenv.config({ path:'/Users/shortscouture/Documents/js/restaurant-finder/.env'});
 import axios from "axios";
 import {z} from "zod";
-import {event} from './openai.service.js'
+import {event} from './openai.service'
 interface Config {
-  nodeEnv: string;    
+  //nodeEnv: string;    
   fourSquareAPI: string; 
   instance: string;
 };
 
-const apiKey = process.env.fourSquareAPI;
+const apiKey = process.env.fourSquareAPI || "";
 const llm =  event;
-const tokenKey = process.env.code;
- //for logging
+const tokenKey = process.env.code || "";
+ 
 // env config
 const options = { //options with parameters 
   method: 'GET',
@@ -30,7 +30,7 @@ const options = { //options with parameters
   }
 };
 
-function cleanOptions(options) {
+function cleanOptions(options:any) {
   return{
     ...options,
     headers: {
@@ -46,6 +46,6 @@ export async function fetchData() {
   const fetch = await axios.request(options);
   console.log(cleanOptions)
   return fetch  } catch(err) {
-  console.error('Error response:', err.fetch?.data || err.message);
+  console.error('Error response:', (err as any).fetch?.data || (err as any).message);
  }
 }
