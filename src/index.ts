@@ -28,8 +28,5 @@ app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send({ error: err.message })
 });
 
-
-app.listen(3000, () => {
-  console.log(`app listening! /api/`)
-})
+export default app;
 
