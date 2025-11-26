@@ -1,37 +1,58 @@
 import dotenv from "dotenv";
 dotenv.config({ path:'/Users/shortscouture/Documents/js/restaurant-finder/.env' });
-const axios = require('axios');
-
+import axios from "axios";
+import {z} from "zod";
+import {event} from './openai.service.ts'
 interface Config {
   nodeEnv: string;    
-  fourSquareAPI: string;
+  fourSquareAPI: string; 
 };
-/*env config*/
-const config: Config = {
-  nodeEnv: process.env.NODE_ENV,
-  fourSquareAPI: process.env.FOURSQUARE_API,
-}; 
 
+const apiKey = process.env.fourSquareAPI
+const llm =  event;
+ //for logging
+// env config
 const options = { //options with parameters 
   method: 'GET',
-  url:'https://places-api.foursquare.com/places/search', 
-  params: {
-    'code': 'pioneerdevai'
+  url:'https://places-api.foursquare.com/places/search',
+ params: {
+    query: llm.query,
+    //ll: llm.ll,
+    //ne: llm.ne,
+    //sw: llm.sw,
+    /*location: {
+      country:llm.country,
+      region:llm.region,
+      locality:llm.locality,
+      near: llm.near,
+    },*/
+    relevance:llm.relevance,
+    near:llm.near,
+    //'code':'pioneerdevai',
   },
   headers: {
     accept: 'application/json',
     'X-Places-Api-Version': '2025-06-17',
-    authorization: 'Bearer ${process.env.fourSquareAPI}'
+    Authorization: apiKey,
   }
 };
 
- export const fetchData = async(axiosReq, err) => {
-  try {
-    const axiosReq = await axios.request(options);
-    return axiosReq.data; 
-  } catch (err) {
-    console.error('api error!', err.message)
+function cleanOptions(options) {
+  return{
+    ...options,
+    headers: {
+      ...options.headers,
+      Authorization: 'hidden',
+    }
   }
+}
+
+
+export async function fetchData() {
+  try{
+  const fetch = await axios.request(options);
+  console.log(cleanOptions)
+  return fetch  } catch(err) {
+  console.error('Error response:', err.fetch?.data || err.message);
  }
-
-
+}
