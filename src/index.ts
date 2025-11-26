@@ -1,5 +1,5 @@
-import { response,event } from './service/openai.service.ts'
-import { fetchData } from './service/foursquare.service.ts'
+import { event } from './service/openai.service'
+import { fetchData } from './service/foursquare.service'
 import express  from 'express'
 //import { apiRequest } from './service/api.service.ts';
 const app = express()
