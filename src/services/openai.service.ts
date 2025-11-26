@@ -5,7 +5,7 @@ import { zodTextFormat } from "openai/helpers/zod";
 import {z} from "zod";
 interface Config {
  // port: number
-  nodeEnv: string;  
+  //nodeEnv: string;  
   openaiAPI: string;  
 };
 
