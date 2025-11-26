@@ -27,6 +27,9 @@ app.use('/static',express.static('index'))
 app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send({ error: err.message })
 });
+app.listen(3000, () => {
+  console.log(`app listening!`)
+})
 
 export default app; // production only vercel does all the work
 
