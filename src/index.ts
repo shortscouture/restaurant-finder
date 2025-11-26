@@ -1,5 +1,5 @@
-import { event } from './service/openai.service'
-import { fetchData } from './service/foursquare.service'
+import { event } from './service/openai.service.ts'
+import { fetchData } from './service/foursquare.service.ts'
 import express  from 'express'
 //import { apiRequest } from './service/api.service.ts';
 const app = express()
@@ -27,9 +27,6 @@ app.use('/static',express.static('index'))
 app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send({ error: err.message })
 });
-app.listen(3000, () => {
-  console.log(`app listening!`)
-})
 
 export default app; // production only vercel does all the work
 
