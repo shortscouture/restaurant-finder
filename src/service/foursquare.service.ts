@@ -6,10 +6,12 @@ import {event} from './openai.service.ts'
 interface Config {
   nodeEnv: string;    
   fourSquareAPI: string; 
+  instance: string;
 };
 
-const apiKey = process.env.fourSquareAPI
+const apiKey = process.env.fourSquareAPI;
 const llm =  event;
+const tokenKey = process.env.code;
  //for logging
 // env config
 const options = { //options with parameters 
@@ -31,6 +33,7 @@ const options = { //options with parameters
     //'code':'pioneerdevai',
   },
   headers: {
+    'X-Access-Token': tokenKey,
     accept: 'application/json',
     'X-Places-Api-Version': '2025-06-17',
     Authorization: apiKey,

@@ -15,11 +15,13 @@ const restaurantResult = event;
   next();
   });*/
 
-app.get('/', async.notEmpty().escape(), (req, res,next) => { 
+app.get('/', async (req, res,next) => { 
   try {  
   const result = await restaurantResult;
   const getRequest = await fetchData(); 
-  console.log(JSON.stringify(getRequest.data.results[0]));} //access the first object only! 
+  console.log(JSON.stringify(getRequest.data.results[0],null,1));
+  res.json(getRequest.data.results[0]);
+  } //access first object only
   catch (err) { 
   console.error('error!', err.message); }
   });
@@ -29,6 +31,8 @@ app.use((req,res,next) => {
   res.setTimeout(60000);
   next();
 });
+
+app.use('/static',express.static('index'))
 
 app.use((err, req, res, next) => {
   res.status(err.status ?? 500).send({ error: err.message })
