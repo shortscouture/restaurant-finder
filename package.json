@@ -18,8 +18,10 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
+    "@api/fsq-developers-places": "file:src/service/.api/apis/fsq-developers-places",
     "@langchain/core": "^1.0.6",
     "@langchain/openai": "^1.1.2",
+    "axios": "^1.13.2",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "langchain": "^1.0.6",
