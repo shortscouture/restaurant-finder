@@ -15,7 +15,7 @@ app.get('/api', async (req, res, next => {
   res.json(getRequest.data.results[0]); } //access first object only
   catch (err) { 
   console.error('error!', (err as any).message); }
-  });
+}));
 
 
 app.use((req,res,next) => {
