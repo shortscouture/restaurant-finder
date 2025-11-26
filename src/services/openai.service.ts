@@ -12,8 +12,8 @@ interface Config {
 //env config
 const config: Config = {
   //port: Number(process.env.PORT),
-  nodeEnv: process.env.NODE_ENV,
-  openaiAPI: process.env.OPENAI_API_KEY,
+  //nodeEnv: process.env.NODE_ENV,
+  openaiAPI: process.env.OPENAI_API_KEY || "",
 }; 
 
 const client = new OpenAI();

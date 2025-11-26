@@ -9,9 +9,9 @@ interface Config {
   instance: string;
 };
 
-const apiKey = process.env.fourSquareAPI;
+const apiKey = process.env.fourSquareAPI || "";
 const llm =  event;
-const tokenKey = process.env.code;
+const tokenKey = process.env.code || "";
  //for logging
 // env config
 const options = { //options with parameters 
