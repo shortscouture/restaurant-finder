@@ -24,6 +24,7 @@
     "axios": "^1.13.2",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
+    "express-validator": "^7.3.1",
     "langchain": "^1.0.6",
     "openai": "^6.9.1"
   },
