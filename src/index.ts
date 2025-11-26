@@ -5,9 +5,9 @@ import express  from 'express'
 const app = express()
 
 const restaurantResult = event;
-app.get('/favicon.ico', (res) => res.status(204).end()); // i dont have favicon.ico
+app.get('/favicon.ico', (req) => req.status(204).end()); // i dont have favicon.ico
 
-app.get('/api', async (res) => { 
+app.get('/api', async (req, res, next => { 
   try {  
   //const result = await restaurantResult;
   const getRequest = await fetchData(); 
